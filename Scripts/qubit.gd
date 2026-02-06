@@ -9,11 +9,11 @@ enum OPERATOR { Z = 0, X = 1, H = 2 }
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_color()
-
+	set_label()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	set_color()
+	pass
 
 func _input(event):
 	if event.is_action_pressed("OperadorZ"):
@@ -22,6 +22,8 @@ func _input(event):
 		apply_operator(OPERATOR.X)
 	if event.is_action_pressed("OperadorH"):
 		apply_operator(OPERATOR.H)
+	set_color()
+	set_label()
 
 func set_color() -> void:
 	if state == QUBIT_STATE.ZERO:
@@ -32,6 +34,16 @@ func set_color() -> void:
 		$MeshInstance3D.material_override = preload("res://Material/Naranja.tres")
 	elif state == QUBIT_STATE.MINUS:
 		$MeshInstance3D.material_override = preload("res://Material/Jungle.tres")
+		
+func set_label() -> void:
+	if state == QUBIT_STATE.ZERO:
+		$Label3D.text = '0'
+	elif state == QUBIT_STATE.ONE:
+		$Label3D.text = '1'
+	if state == QUBIT_STATE.PLUS:
+		$Label3D.text = '+'
+	elif state == QUBIT_STATE.MINUS:
+		$Label3D.text = '-'
 
 func apply_operator(operator: OPERATOR) -> void:
 	if state == QUBIT_STATE.ZERO:
