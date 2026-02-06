@@ -25,7 +25,7 @@ func _input(event):
 
 func set_color() -> void:
 	if state == QUBIT_STATE.ZERO:
-		$MeshInstance3D.material_override = preload("res://Material/Navy.tres")
+		$MeshInstance3D.material_override = preload("res://Material/Azul.tres")
 	elif state == QUBIT_STATE.ONE:
 		$MeshInstance3D.material_override = preload("res://Material/Rosa.tres")
 	if state == QUBIT_STATE.PLUS:
