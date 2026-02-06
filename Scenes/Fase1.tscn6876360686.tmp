@@ -18,9 +18,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.30472, 8.506193, -17.557238
 [node name="Camera3D" type="Camera3D" parent="." unique_id=667715512]
 transform = Transform3D(-1, -1.8176218e-08, 8.551238e-08, 0, 0.9781476, 0.2079117, -8.742278e-08, 0.2079117, -0.9781476, 6, 7, -26.201)
 current = true
-
-[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1637562212]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.838274, 9.610334, 0)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=490132286]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.618053, 7.874481, 0)
