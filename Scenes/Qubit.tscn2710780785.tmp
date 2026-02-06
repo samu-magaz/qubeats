@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://d0riv1g2jmeyk"]
+
+[ext_resource type="Script" uid="uid://cg0hxflbvsm06" path="res://Scripts/qubit.gd" id="1_6ae7d"]
+[ext_resource type="Material" uid="uid://v6ns7iipokkd" path="res://Material/Rosa.tres" id="2_dhsgr"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ly4sh"]
+material = ExtResource("2_dhsgr")
+
+[node name="Qubit" type="Node3D" unique_id=351139800]
+script = ExtResource("1_6ae7d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1556845490]
+mesh = SubResource("SphereMesh_ly4sh")

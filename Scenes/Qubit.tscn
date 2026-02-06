@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://d0riv1g2jmeyk"]
+
+[ext_resource type="Script" uid="uid://cg0hxflbvsm06" path="res://Scripts/qubit.gd" id="1_6ae7d"]
+[ext_resource type="Material" uid="uid://cc6p0hdwdn5h1" path="res://Material/Jungle.tres" id="2_dhsgr"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ly4sh"]
+material = ExtResource("2_dhsgr")
+
+[sub_resource type="Environment" id="Environment_dhsgr"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ly4sh"]
+
+[sub_resource type="Compositor" id="Compositor_5o2gp"]
+
+[node name="Qubit" type="Node3D" unique_id=351139800]
+script = ExtResource("1_6ae7d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1556845490]
+mesh = SubResource("SphereMesh_ly4sh")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=53928619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5275526)
+environment = SubResource("Environment_dhsgr")
+attributes = SubResource("CameraAttributesPractical_ly4sh")
+compositor = SubResource("Compositor_5o2gp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1083503937]
+transform = Transform3D(1, 0, 0, 0, 0.7937357, 0.60826284, 0, -0.60826284, 0.7937357, 0, 1.3857365, 1.1177263)
+sky_mode = 1
