@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cg0hxflbvsm06" path="res://Scripts/qubit.gd" id="1_6ae7d"]
 [ext_resource type="Material" uid="uid://cc6p0hdwdn5h1" path="res://Material/Jungle.tres" id="2_dhsgr"]
+[ext_resource type="FontFile" uid="uid://cjvjmmwk7p3vc" path="res://Assets/Fonts/pixel_chubby.TTF" id="3_ly4sh"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ly4sh"]
 material = ExtResource("2_dhsgr")
@@ -27,3 +28,8 @@ compositor = SubResource("Compositor_5o2gp")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1083503937]
 transform = Transform3D(1, 0, 0, 0, 0.7937357, 0.60826284, 0, -0.60826284, 0.7937357, 0, 1.3857365, 1.1177263)
 sky_mode = 1
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1611826861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.49993962)
+pixel_size = 0.01
+font = ExtResource("3_ly4sh")
