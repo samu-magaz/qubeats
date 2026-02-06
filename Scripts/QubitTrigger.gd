@@ -1,8 +1,12 @@
 extends Node3D
 
 var state: int = 0
+@export var mat: Material
+var originalPosition
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_node("MeshInstance3D").material_override = mat
+	originalPosition = global_position.y
 	pass # Replace with function body.
 
 
@@ -10,15 +14,32 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-func _selected()-> void:
+func _Selected()-> void:
 	global_position.y = global_position.y -1
+	state = 1
 	pass
-func _deselected()-> void:
-	global_position.y = global_position.y +1
+func _Deselected()-> void:
+	if state == 1:
+		global_position.y = global_position.y +1
+	state = 0
+	pass
+	
+func _Trigger()-> void:
+	if state == 1:
+		global_position.y = global_position.y + 2
+	state = 0
+	pass
+func _Recover()-> void: #esta funcion es mejorable
+	if global_position.y != originalPosition:
+		global_position.y = originalPosition
 	pass
 	
 func _input(event):
 	if event.is_action_pressed("Select_Left"):
-		_selected()
+		_Selected()
 	if event.is_action_released("Select_Left"):
-		_deselected()
+		_Deselected()
+	if event.is_action_pressed("Select_Center"):#Asignado a tecla random
+		_Trigger()
+	if event.is_action_released("Select_Center"):#Asignado a tecla random
+		_Recover()

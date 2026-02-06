@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://b6wct3ikvcrx4"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Sound_Trigger.tscn" id="1_f1fg8"]
 [ext_resource type="PackedScene" uid="uid://drnvgxp2gn628" path="res://Scenes/Channel.tscn" id="1_icdkg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nrgdn"]
@@ -15,9 +14,6 @@
 
 [node name="Suelo" type="MeshInstance3D" parent="." unique_id=824618534]
 mesh = SubResource("BoxMesh_nrgdn")
-
-[node name="SoundTrigger" parent="." unique_id=1882367025 instance=ExtResource("1_f1fg8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.30472, 8.506193, -17.557238)
 
 [node name="Channel" parent="." unique_id=769698616 instance=ExtResource("1_icdkg")]
 

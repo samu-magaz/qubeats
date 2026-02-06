@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://drnvgxp2gn628"]
 
+[ext_resource type="PackedScene" uid="uid://dd72aa0gjcoha" path="res://Scenes/Sound_Trigger.tscn" id="1_1j884"]
 [ext_resource type="Material" uid="uid://c4iho04kfkodd" path="res://Material/Verde.tres" id="1_j72rv"]
 [ext_resource type="Material" uid="uid://clglddvkdupky" path="res://Material/Amarillo.tres" id="2_anlqe"]
+[ext_resource type="Material" uid="uid://b2hxfnn0ubyos" path="res://Material/Azul.tres" id="2_o30wd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anlqe"]
 albedo_color = Color(0.07058824, 0.22745098, 0.21568628, 1)
@@ -22,6 +24,15 @@ albedo_color = Color(0.019607844, 0.05882353, 1, 1)
 material = SubResource("StandardMaterial3D_o30wd")
 
 [node name="Channel" type="Node3D" unique_id=769698616]
+
+[node name="SoundTrigger" parent="." unique_id=1882367025 instance=ExtResource("1_1j884")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9423003, 2.9811673, 25.49283)
+
+[node name="Node3D" parent="SoundTrigger" index="0" unique_id=1384333076]
+mat = ExtResource("2_o30wd")
+
+[node name="MeshInstance3D" parent="SoundTrigger/Node3D" index="0" unique_id=1972528722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50.99505)
 
 [node name="Road" type="MeshInstance3D" parent="." unique_id=78500185]
 transform = Transform3D(100, 0, 0, 0, 2, 0, 0, 0, 100, 0.080373764, 0.061027527, -0.0007599068)
@@ -47,3 +58,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 50, 3, 0, 0)
 [node name="Channel 1" type="MeshInstance3D" parent="Road1" unique_id=1754638349]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 mesh = SubResource("BoxMesh_0ypkk")
+
+[editable path="SoundTrigger"]
