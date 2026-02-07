@@ -1,9 +1,49 @@
 [gd_scene format=3 uid="uid://bpy3ixasuvbda"]
 
 [ext_resource type="Script" uid="uid://7gi2km6lx4jd" path="res://Scripts/manager.gd" id="1_n6fj3"]
+[ext_resource type="PackedScene" uid="uid://cwg2hw00sij0b" path="res://Scenes/Wave.tscn" id="2_7xwus"]
 
-[node name="Manager" type="Node3D" unique_id=1597922537]
+[sub_resource type="Curve3D" id="Curve3D_n6fj3"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -2.8808622, 5.6605935, 0, 0, 0, 0, 0, 0, 0, -6.208329, -2.0726926, 0, 0, 0, 0, 0, 0, 0, -10.213617, -10.360558, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+up_vector_enabled = false
+
+[sub_resource type="Curve3D" id="Curve3D_7xwus"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.018664598, 8.054792, 0, 0, 0, 0, 0, 0, 0, 0.042954206, 0.013407469, 0, 0, 0, 0, 0, 0, 0, 0.012142897, -8.058788, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_un7ls"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.8325717, 8.023982, 0, 0, 0, 0, 0, 0, 0, 7.098422, 0.013407469, 0, 0, 0, 0, 0, 0, 0, 9.840505, -7.997167, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[node name="Manager" type="Node3D" unique_id=1597922537 node_paths=PackedStringArray("left_path", "center_path", "right_path")]
 script = ExtResource("1_n6fj3")
+left_path = NodePath("LeftPath3D")
+center_path = NodePath("CenterPath3D")
+right_path = NodePath("RightPath3D")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=695774947]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.0704045)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.162807)
+fov = 90.0
+
+[node name="LeftPath3D" type="Path3D" parent="." unique_id=182954018]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8517208, 2.3325791, 0)
+curve = SubResource("Curve3D_n6fj3")
+
+[node name="CenterPath3D" type="Path3D" parent="." unique_id=913323716]
+curve = SubResource("Curve3D_7xwus")
+
+[node name="RightPath3D" type="Path3D" parent="." unique_id=1915321222]
+curve = SubResource("Curve3D_un7ls")
+
+[node name="Wave" parent="." unique_id=2008961349 instance=ExtResource("2_7xwus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.721248, 0, 0)

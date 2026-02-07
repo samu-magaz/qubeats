@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cwg2hw00sij0b"]
+
+[ext_resource type="Script" uid="uid://6aanrds2gp52" path="res://Scripts/wave.gd" id="1_y54vu"]
+
+[sub_resource type="Environment" id="Environment_y54vu"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_y54vu"]
+
+[sub_resource type="Compositor" id="Compositor_ddehd"]
+
+[sub_resource type="Curve3D" id="Curve3D_rvxmi"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_ddehd"]
+
+[node name="Wave" type="Node3D" unique_id=2008961349 node_paths=PackedStringArray("path", "shape")]
+script = ExtResource("1_y54vu")
+path = NodePath("Path3D")
+shape = NodePath("MeshInstance3D")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=604631847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.441741)
+environment = SubResource("Environment_y54vu")
+attributes = SubResource("CameraAttributesPractical_y54vu")
+compositor = SubResource("Compositor_ddehd")
+
+[node name="Path3D" type="Path3D" parent="." unique_id=1085210213]
+curve = SubResource("Curve3D_rvxmi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1805586639]
+mesh = SubResource("SphereMesh_ddehd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2138972180]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 1, 3)
