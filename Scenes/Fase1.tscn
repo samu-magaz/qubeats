@@ -1,10 +1,21 @@
 [gd_scene format=3 uid="uid://b6wct3ikvcrx4"]
 
+[ext_resource type="PackedScene" uid="uid://d0riv1g2jmeyk" path="res://Scenes/Qubit.tscn" id="1_f1fg8"]
 [ext_resource type="PackedScene" uid="uid://drnvgxp2gn628" path="res://Scenes/Channel.tscn" id="1_icdkg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nrgdn"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_icdkg"]
+
+[sub_resource type="Sky" id="Sky_icdkg"]
+sky_material = SubResource("ProceduralSkyMaterial_icdkg")
+
 [sub_resource type="Environment" id="Environment_f1fg8"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_icdkg")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_hfkdh"]
 
@@ -15,6 +26,9 @@
 [node name="Suelo" type="MeshInstance3D" parent="." unique_id=824618534]
 mesh = SubResource("BoxMesh_nrgdn")
 
+[node name="Qubit" parent="." unique_id=351139800 instance=ExtResource("1_f1fg8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7959013, 4.413116, -25.606964)
+
 [node name="Channel" parent="." unique_id=769698616 instance=ExtResource("1_icdkg")]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=667715512]
@@ -23,3 +37,8 @@ environment = SubResource("Environment_f1fg8")
 attributes = SubResource("CameraAttributesPhysical_hfkdh")
 compositor = SubResource("Compositor_olbvu")
 current = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1434395866]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0157948, 9.144913, -2.5025418)
+light_energy = 3.689
+light_indirect_energy = 4.03

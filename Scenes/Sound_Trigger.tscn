@@ -1,14 +1,26 @@
 [gd_scene format=3 uid="uid://dd72aa0gjcoha"]
 
 [ext_resource type="Script" uid="uid://bkglrne4atowx" path="res://Scripts/QubitTrigger.gd" id="1_oqlft"]
+[ext_resource type="Material" uid="uid://b2hxfnn0ubyos" path="res://Material/Azul.tres" id="2_1ca2s"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_x3mjc"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_oqlft"]
 
 [node name="SoundTrigger" type="Node3D" unique_id=1882367025]
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1384333076]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_oqlft")
+mat = ExtResource("2_1ca2s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D" unique_id=1972528722]
 mesh = SubResource("CylinderMesh_x3mjc")
+
+[node name="Area3D" type="Area3D" parent="Node3D" unique_id=261521284]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Area3D" unique_id=664978494]
+shape = SubResource("CylinderShape3D_oqlft")
+
+[connection signal="body_entered" from="Node3D/Area3D" to="Node3D" method="_on_area_3d_body_entered"]
+[connection signal="body_shape_entered" from="Node3D/Area3D" to="Node3D" method="_on_area_3d_body_shape_entered"]

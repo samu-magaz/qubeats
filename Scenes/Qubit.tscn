@@ -4,6 +4,8 @@
 [ext_resource type="Material" uid="uid://b2hxfnn0ubyos" path="res://Material/Azul.tres" id="2_dhsgr"]
 [ext_resource type="FontFile" uid="uid://cjvjmmwk7p3vc" path="res://Assets/Fonts/pixel_chubby.TTF" id="3_ly4sh"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ly4sh"]
+
 [sub_resource type="SphereMesh" id="SphereMesh_ly4sh"]
 material = ExtResource("2_dhsgr")
 
@@ -15,6 +17,11 @@ material = ExtResource("2_dhsgr")
 
 [node name="Qubit" type="Node3D" unique_id=351139800]
 script = ExtResource("1_6ae7d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2034965500]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=920437453]
+shape = SubResource("SphereShape3D_ly4sh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1556845490]
 mesh = SubResource("SphereMesh_ly4sh")
