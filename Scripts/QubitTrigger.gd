@@ -1,3 +1,4 @@
+class_name QubitTrigger
 extends Node3D
 
 var state: int = 0
@@ -50,7 +51,7 @@ func _input(event):
 		_Recover()
 
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
+func _on_area_3d_body_entered(body: Node3D) -> void: #este código hay que limpiarlo
 	print(body.get_parent().name)
 	body.get_parent().queue_free()
 	pass # Replace with function body.

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://vwi3efen54e2"]
+
+[ext_resource type="Script" uid="uid://citwfxk0y7le6" path="res://Scenes/mastermind.gd" id="1_qhcma"]
+
+[node name="Mastermind" type="Node" unique_id=618614357]
+script = ExtResource("1_qhcma")
