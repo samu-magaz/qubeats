@@ -1,3 +1,4 @@
+class_name Qubit
 extends Node3D
 
 enum QUBIT_STATE { ZERO = 0, ONE = 1, PLUS = 2, MINUS = 3 }

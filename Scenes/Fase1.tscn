@@ -26,7 +26,8 @@ ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="Fase" type="Node3D" unique_id=2121837702]
 
-[node name="Mastermind" parent="." unique_id=618614357 instance=ExtResource("1_hfkdh")]
+[node name="Mastermind" parent="." unique_id=618614357 node_paths=PackedStringArray("triggerList") instance=ExtResource("1_hfkdh")]
+triggerList = [NodePath("../Channel/Road1/TriggerLeft/Node3D"), NodePath("../Channel/Road1/TriggerCenter/Node3D"), NodePath("../Channel/Road1/TriggerRight/Node3D")]
 
 [node name="Suelo" type="MeshInstance3D" parent="." unique_id=824618534]
 mesh = SubResource("BoxMesh_nrgdn")

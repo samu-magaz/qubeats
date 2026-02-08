@@ -40,18 +40,9 @@ func _Recover()-> void: #esta funcion es mejorable
 func _on_body_entered(body: Node3D) -> void:
 	print("Entró:", body.name)
 		
-func _input(event):
-	if event.is_action_pressed("Select_Left"):
-		_Selected()
-	if event.is_action_released("Select_Left"):
-		_Deselected()
-	if event.is_action_pressed("Select_Center"):#Asignado a tecla random
-		_Trigger()
-	if event.is_action_released("Select_Center"):#Asignado a tecla random
-		_Recover()
-
 
 func _on_area_3d_body_entered(body: Node3D) -> void: #este código hay que limpiarlo
-	print(body.get_parent().name)
-	body.get_parent().queue_free()
-	pass # Replace with function body.
+	var collision = body.get_parent()
+	if collision is Qubit:
+		if collision.state == Qubit.QUBIT_STATE.ZERO:
+			body.get_parent().queue_free()
