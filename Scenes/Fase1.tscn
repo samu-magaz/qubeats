@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://b6wct3ikvcrx4"]
 
 [ext_resource type="PackedScene" uid="uid://d0riv1g2jmeyk" path="res://Scenes/Qubit.tscn" id="1_f1fg8"]
+[ext_resource type="PackedScene" uid="uid://vwi3efen54e2" path="res://Scenes/Mastermind.tscn" id="1_hfkdh"]
 [ext_resource type="PackedScene" uid="uid://drnvgxp2gn628" path="res://Scenes/Channel.tscn" id="1_icdkg"]
+[ext_resource type="Material" uid="uid://clglddvkdupky" path="res://Material/Amarillo.tres" id="4_oa3l7"]
+[ext_resource type="Material" uid="uid://c4iho04kfkodd" path="res://Material/Verde.tres" id="5_k332x"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nrgdn"]
 
@@ -23,6 +26,8 @@ ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="Fase" type="Node3D" unique_id=2121837702]
 
+[node name="Mastermind" parent="." unique_id=618614357 instance=ExtResource("1_hfkdh")]
+
 [node name="Suelo" type="MeshInstance3D" parent="." unique_id=824618534]
 mesh = SubResource("BoxMesh_nrgdn")
 
@@ -30,6 +35,12 @@ mesh = SubResource("BoxMesh_nrgdn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7959013, 4.413116, -25.606964)
 
 [node name="Channel" parent="." unique_id=769698616 instance=ExtResource("1_icdkg")]
+
+[node name="Node3D" parent="Channel/Road1/TriggerLeft" parent_id_path=PackedInt32Array(769698616, 1981431746) index="0" unique_id=1384333076]
+mat = ExtResource("4_oa3l7")
+
+[node name="Node3D" parent="Channel/Road1/TriggerCenter" parent_id_path=PackedInt32Array(769698616, 1547428074) index="0" unique_id=1384333076]
+mat = ExtResource("5_k332x")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=667715512]
 transform = Transform3D(-1, -1.8176218e-08, 8.551238e-08, 0, 0.9781476, 0.2079117, -8.742278e-08, 0.2079117, -0.9781476, 6, 7, -40.953865)
@@ -42,3 +53,8 @@ current = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0157948, 9.144913, -2.5025418)
 light_energy = 3.689
 light_indirect_energy = 4.03
+
+[editable path="Channel"]
+[editable path="Channel/Road1/TriggerRight"]
+[editable path="Channel/Road1/TriggerLeft"]
+[editable path="Channel/Road1/TriggerCenter"]
