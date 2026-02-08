@@ -26,8 +26,9 @@ ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="Fase" type="Node3D" unique_id=2121837702]
 
-[node name="Mastermind" parent="." unique_id=618614357 node_paths=PackedStringArray("triggerList") instance=ExtResource("1_hfkdh")]
+[node name="Mastermind" parent="." unique_id=618614357 node_paths=PackedStringArray("triggerList", "mainScene") instance=ExtResource("1_hfkdh")]
 triggerList = [NodePath("../Channel/Road1/TriggerLeft/Node3D"), NodePath("../Channel/Road1/TriggerCenter/Node3D"), NodePath("../Channel/Road1/TriggerRight/Node3D")]
+mainScene = NodePath("..")
 
 [node name="Suelo" type="MeshInstance3D" parent="." unique_id=824618534]
 mesh = SubResource("BoxMesh_nrgdn")
@@ -44,7 +45,7 @@ mat = ExtResource("4_oa3l7")
 mat = ExtResource("5_k332x")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=667715512]
-transform = Transform3D(-1, -1.8176218e-08, 8.551238e-08, 0, 0.9781476, 0.2079117, -8.742278e-08, 0.2079117, -0.9781476, 6, 7, -40.953865)
+transform = Transform3D(-1, -1.8176218e-08, 8.551238e-08, 0, 0.9781476, 0.2079117, -8.742278e-08, 0.2079117, -0.9781476, 6, 7, -33.70195)
 environment = SubResource("Environment_f1fg8")
 attributes = SubResource("CameraAttributesPhysical_hfkdh")
 compositor = SubResource("Compositor_olbvu")

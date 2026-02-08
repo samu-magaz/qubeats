@@ -4,15 +4,19 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 @export var triggerList: Array[QubitTrigger]
-
+var qubit = load("res://Scenes/Qubit.tscn")
+@export var mainScene: Node
+var timer = 0.0
  
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	pass
+
+#Ahora mismo crea un qubit random cada segundo. CAMBIAR
+func _process(delta: float) -> void:
+	timer += delta
+	if timer >= 1:
+		timer = 0.0
+		_RandomQubitGenerator(qubit, randi_range(0, 2) + 1)
 	
 func _input(event):
 	#Seleccionar y soltar los 3 trigger
@@ -37,3 +41,10 @@ func _input(event):
 		for trigger in triggerList:
 			if trigger.state == 0:
 				trigger._Recover() #ESTO ES UN PUTO DRAMA
+
+func _RandomQubitGenerator(qubit, channel):
+	var newInstance = qubit.instantiate()
+	mainScene.add_child(newInstance)
+	newInstance.position = Vector3(channel * 3, 4.5, -1)
+
+	
