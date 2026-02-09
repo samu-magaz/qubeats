@@ -50,5 +50,4 @@ func _RandomQubitGenerator(qubit, channel):
 	newInstance.position = Vector3(channel * 3, 4.5, -1)
 
 func start_scoring_loop() -> void:
-		await get_tree().create_timer(2.0).timeout
 		emit_signal("point_scored")
