@@ -10,7 +10,7 @@ var qubit = load("res://Scenes/Qubit.tscn")
 var timer = 0.0
  
 func _ready() -> void:
-	start_scoring_loop()
+	pass
 
 #Ahora mismo crea un qubit random cada segundo. CAMBIAR
 func _process(delta: float) -> void:
@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 	if timer >= 1:
 		timer = 0.0
 		_RandomQubitGenerator(qubit, randi_range(0, 2) + 1)
+		start_scoring_loop()
 	
 func _input(event):
 	#Seleccionar y soltar los 3 trigger
@@ -49,6 +50,5 @@ func _RandomQubitGenerator(qubit, channel):
 	newInstance.position = Vector3(channel * 3, 4.5, -1)
 
 func start_scoring_loop() -> void:
-	while true:
 		await get_tree().create_timer(2.0).timeout
 		emit_signal("point_scored")
