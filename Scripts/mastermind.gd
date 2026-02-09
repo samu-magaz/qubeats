@@ -1,6 +1,7 @@
 class_name mastermind
 extends Node
 
+signal point_scored
 
 # Called when the node enters the scene tree for the first time.
 @export var triggerList: Array[QubitTrigger]
@@ -9,7 +10,7 @@ var qubit = load("res://Scenes/Qubit.tscn")
 var timer = 0.0
  
 func _ready() -> void:
-	pass
+	start_scoring_loop()
 
 #Ahora mismo crea un qubit random cada segundo. CAMBIAR
 func _process(delta: float) -> void:
@@ -47,4 +48,7 @@ func _RandomQubitGenerator(qubit, channel):
 	mainScene.add_child(newInstance)
 	newInstance.position = Vector3(channel * 3, 4.5, -1)
 
-	
+func start_scoring_loop() -> void:
+	while true:
+		await get_tree().create_timer(2.0).timeout
+		emit_signal("point_scored")

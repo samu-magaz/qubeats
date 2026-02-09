@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://drnvgxp2gn628" path="res://Scenes/Channel.tscn" id="1_icdkg"]
 [ext_resource type="Material" uid="uid://clglddvkdupky" path="res://Material/Amarillo.tres" id="4_oa3l7"]
 [ext_resource type="Material" uid="uid://c4iho04kfkodd" path="res://Material/Verde.tres" id="5_k332x"]
+[ext_resource type="PackedScene" uid="uid://b6c2mr7sg3ouv" path="res://Scenes/Scoreboard.tscn" id="6_k332x"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nrgdn"]
 
@@ -55,6 +56,11 @@ current = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0157948, 9.144913, -2.5025418)
 light_energy = 3.689
 light_indirect_energy = 4.03
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1098845022]
+
+[node name="Scoreboard" parent="CanvasLayer" unique_id=1760385072 instance=ExtResource("6_k332x")]
+offset_right = 97.0
 
 [editable path="Channel"]
 [editable path="Channel/Road1/TriggerRight"]
