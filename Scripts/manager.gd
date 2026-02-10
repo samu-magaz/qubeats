@@ -1,11 +1,15 @@
 extends Node3D
 
+enum SONG { SYNTHWAVE = 0, RETRO = 1 }
+
 @export var audio_player: AudioStreamPlayer3D
 @export var num_qubits: int = 5
 
 @export var left_path: Path3D
 @export var center_path: Path3D
 @export var right_path: Path3D
+
+@export var song: SONG
 
 var total_length = 0
 var speed = 1

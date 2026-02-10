@@ -14,7 +14,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#position.z = position.z -0.2
+	position.z = position.z -0.2
 	pass
 
 func _input(event):

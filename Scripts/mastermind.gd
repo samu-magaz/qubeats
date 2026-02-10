@@ -8,17 +8,60 @@ signal point_scored
 var qubit = load("res://Scenes/Qubit.tscn")
 @export var mainScene: Node
 var timer = 0.0
+
+@export var audio_player: AudioStreamPlayer3D
  
+enum SONG { SYNTHWAVE = 0, RETRO = 1 }
+@export var song_selection: SONG
+var song_name = ""
+
+var total_length = 0
+var speed = 1
+
+var chart = {}
+var chart_offset = chart.get("offset", 0.0)
+var notes = []
+var next_note_index := 0
+
+var rng = RandomNumberGenerator.new()
+
 func _ready() -> void:
-	pass
+	if song_selection == SONG.SYNTHWAVE:
+		song_name = "the_mountain-synthwave"
+	elif song_selection == SONG.RETRO:
+		song_name = "delosound-retro"
+	
+	load_chart("res://Assets/Beatmaps/" + song_name + ".json")
+	audio_player.stream = load("res://Assets/Songs/" + song_name + ".wav")
+	
+	rng.seed = hash(song_name)
+
+	await get_tree().process_frame
+	audio_player.play()
 
 #Ahora mismo crea un qubit random cada segundo. CAMBIAR
 func _process(delta: float) -> void:
-	timer += delta
-	if timer >= 1:
-		timer = 0.0
-		_RandomQubitGenerator(qubit, randi_range(0, 2) + 1)
-		start_scoring_loop()
+		
+	var song_time = get_song_time()
+	
+	while next_note_index < notes.size():
+		var note = notes[next_note_index]
+		# TODO: fix note spawn time adjustment
+		var spawn_time = note["time"] - 1.5
+		
+		if song_time >= spawn_time:
+			_RandomQubitGenerator(qubit, randi_range(0, 2) + 1)
+			#add_qubit(paths.get(rng.randi_range(0, 2)))
+			#add_qubit(paths.get(int(note["lane"])))
+			start_scoring_loop()
+			next_note_index += 1
+		else:
+			break
+			
+	#timer += delta
+	#if timer >= 1:
+		#timer = 0.0
+		#_RandomQubitGenerator(qubit, randi_range(0, 2) + 1)
 	
 func _input(event):
 	#Seleccionar y soltar los 3 trigger
@@ -44,8 +87,25 @@ func _input(event):
 			if trigger.state == 0:
 				trigger._Recover() #ESTO ES UN PUTO DRAMA
 
+
+func load_chart(path: String):
+	var file = FileAccess.open(path, FileAccess.READ)
+	chart = JSON.parse_string(file.get_as_text())
+
+	notes = chart["notes"]
+	next_note_index = 0
+
+func get_song_time() -> float:
+	return (
+		audio_player.get_playback_position()
+		+ AudioServer.get_time_since_last_mix()
+		- AudioServer.get_output_latency()
+		- chart_offset
+	)
+	
 func _RandomQubitGenerator(qubit, channel):
 	var newInstance = qubit.instantiate()
+	newInstance.rotate_y(PI)
 	mainScene.add_child(newInstance)
 	newInstance.position = Vector3(channel * 3, 4.5, -1)
 
