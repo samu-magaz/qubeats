@@ -50,7 +50,7 @@ func _process(delta: float) -> void:
 		var spawn_time = note["time"] - 1.5
 		
 		if song_time >= spawn_time:
-			_RandomQubitGenerator(qubit, randi_range(0, 2) + 1)
+			_RandomQubitGenerator(qubit, rng.randi_range(0, 2) + 1)
 			#add_qubit(paths.get(rng.randi_range(0, 2)))
 			#add_qubit(paths.get(int(note["lane"])))
 			start_scoring_loop()
@@ -78,13 +78,13 @@ func _input(event):
 	if event.is_action_released("Select_Right"):
 		triggerList[2]._Deselected()
 	#Disparar los triggers
-	if event.is_action_pressed("Action"):#Asignado a tecla random en un futuro serán las operaciones
+	if event.is_action_pressed("OperadorX") or event.is_action_pressed("OperadorH"):#Asignado a tecla random en un futuro serán las operaciones
 		for trigger in triggerList:
 			if trigger.state == 1:
-				trigger._Trigger()
-	if event.is_action_released("Action"):#Asignado a tecla random en un futuro serán las operaciones
+				trigger._Trigger(event.as_text())
+	if event.is_action_released("OperadorX") or event.is_action_released("OperadorH"):#Asignado a tecla random en un futuro serán las operaciones
 		for trigger in triggerList:
-			if trigger.state == 0:
+			if trigger.state == 1:
 				trigger._Recover() #ESTO ES UN PUTO DRAMA
 
 
@@ -105,6 +105,7 @@ func get_song_time() -> float:
 	
 func _RandomQubitGenerator(qubit, channel):
 	var newInstance = qubit.instantiate()
+	newInstance.set_state(rng.randi() % 2 + 1)
 	newInstance.rotate_y(PI)
 	mainScene.add_child(newInstance)
 	newInstance.position = Vector3(channel * 3, 4.5, -1)

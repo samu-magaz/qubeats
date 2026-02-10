@@ -17,15 +17,15 @@ func _process(delta: float) -> void:
 	position.z = position.z -0.2
 	pass
 
-func _input(event):
-	if event.is_action_pressed("OperadorZ"):
-		apply_operator(OPERATOR.Z)
-	if event.is_action_pressed("OperadorX"):
-		apply_operator(OPERATOR.X)
-	if event.is_action_pressed("OperadorH"):
-		apply_operator(OPERATOR.H)
-	set_color()
-	set_label()
+#func _input(event):
+	#if event.is_action_pressed("OperadorZ"):
+		#apply_operator(OPERATOR.Z)
+	#if event.is_action_pressed("OperadorX"):
+		#apply_operator(OPERATOR.X)
+	#if event.is_action_pressed("OperadorH"):
+		#apply_operator(OPERATOR.H)
+	#set_color()
+	#set_label()
 
 func set_color() -> void:
 	if state == QUBIT_STATE.ZERO:
@@ -46,6 +46,11 @@ func set_label() -> void:
 		$Label3D.text = '+'
 	elif state == QUBIT_STATE.MINUS:
 		$Label3D.text = '-'
+		
+func set_state(state_index: int) -> void:
+	state = QUBIT_STATE.values()[state_index]
+	set_color()
+	set_label()
 
 func apply_operator(operator: OPERATOR) -> void:
 	if state == QUBIT_STATE.ZERO:
@@ -71,3 +76,6 @@ func apply_operator(operator: OPERATOR) -> void:
 			state = QUBIT_STATE.ONE
 		elif operator == OPERATOR.Z:
 			state = QUBIT_STATE.PLUS
+			
+	set_color()
+	set_label()
