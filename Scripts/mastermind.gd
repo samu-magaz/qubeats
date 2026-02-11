@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 			_RandomQubitGenerator(qubit, rng.randi_range(0, 2) + 1)
 			#add_qubit(paths.get(rng.randi_range(0, 2)))
 			#add_qubit(paths.get(int(note["lane"])))
-			start_scoring_loop()#esto hay que moverlo a cuando se acierte el hit con el disparador
+			#start_scoring_loop()#esto hay que moverlo a cuando se acierte el hit con el disparador
 			next_note_index += 1
 		else:
 			break

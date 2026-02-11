@@ -52,6 +52,11 @@ func _on_area_3d_body_entered(body: Node3D) -> void: #este código hay que limpi
 			collision.apply_operator(Qubit.OPERATOR.H)
 		if collision.state == Qubit.QUBIT_STATE.ZERO:
 			lerp(collision.scale, collision.scale * 1.2, 1)
+			start_scoring_loop()
+			body.get_parent().queue_free()
 		else:
 			lerp(collision.scale, collision.scale * 0.8, 1)
 			#body.get_parent().queue_free()
+			
+func start_scoring_loop() -> void:
+		emit_signal("point_scored")
