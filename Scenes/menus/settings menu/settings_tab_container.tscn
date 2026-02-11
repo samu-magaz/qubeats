@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://d1hfpopiop7oa"]
+
+[node name="Settings_Tab_Container" type="Control" unique_id=1833531842]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=403108061]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 50.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="Sound" type="TabBar" parent="TabContainer" unique_id=99452896]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Sound" unique_id=445604437]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer" unique_id=1721110898]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label2" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer" unique_id=887410501]
+layout_mode = 2
+text = "Sound2"
+
+[node name="Label3" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer" unique_id=941714961]
+layout_mode = 2
+text = "Sound3"
+
+[node name="Accessibility" type="TabBar" parent="TabContainer" unique_id=2088926768]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Accessibility" unique_id=1984877886]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Accessibility/MarginContainer" unique_id=678614193]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label2" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer" unique_id=1704602836]
+layout_mode = 2
+text = "AC1"
+
+[node name="Label3" type="Label" parent="TabContainer/Accessibility/MarginContainer/VBoxContainer" unique_id=935540598]
+layout_mode = 2
+text = "AC2"

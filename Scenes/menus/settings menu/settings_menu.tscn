@@ -1,14 +1,19 @@
 [gd_scene format=3 uid="uid://cmjik23a8dxbc"]
 
 [ext_resource type="Script" uid="uid://dmigqtx18tflq" path="res://Scripts/settings_menu.gd" id="1_ixoci"]
+[ext_resource type="PackedScene" uid="uid://d1hfpopiop7oa" path="res://Scenes/menus/settings menu/settings_tab_container.tscn" id="2_y0cl0"]
 
 [node name="Settings_Menu" type="Control" unique_id=767478672]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -279.0
+offset_top = -180.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_ixoci")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=586253171]
@@ -18,9 +23,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
+theme_override_constants/margin_left = -156
+theme_override_constants/margin_top = -40
+theme_override_constants/margin_right = -150
 theme_override_constants/margin_bottom = 12
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1638775254]
@@ -29,12 +34,15 @@ theme_override_constants/separation = -48
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=484881662]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Settings_Tab_Container" parent="MarginContainer/VBoxContainer" unique_id=1833531842 instance=ExtResource("2_y0cl0")]
+layout_mode = 2
+
 [node name="Exit_Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1062843123]
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 8
 text = "Exit"
