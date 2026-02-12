@@ -62,7 +62,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	audio_player.play()
 
-	spectrum_instance = AudioServer.get_bus_effect_instance(1, 0)  # Bus 1, Effect 0
+	spectrum_instance = AudioServer.get_bus_effect_instance(3, 0)  # Bus 1, Effect 0
 
 #Ahora mismo crea un qubit random cada segundo. CAMBIAR
 func _process(delta: float) -> void:

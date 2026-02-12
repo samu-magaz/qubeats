@@ -61,7 +61,7 @@ light_indirect_energy = 4.03
 offset_right = 97.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1022222977]
-bus = &"Music"
+bus = &"Visualizer"
 
 [editable path="Channel"]
 [editable path="Channel/Road1/TriggerRight"]
