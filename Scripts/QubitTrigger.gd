@@ -6,12 +6,14 @@ var state: int = 0
 var originalPosition
 var trigger_op
 var master: mastermind
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_node("MeshInstance3D").material_override = mat
 	originalPosition = global_position.y
 	#esto tiene que ser mejorable, basicamente accede a la scena padre
 	master = get_tree().current_scene.get_node("Mastermind")
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

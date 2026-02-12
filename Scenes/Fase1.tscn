@@ -51,6 +51,7 @@ mainScene = NodePath("..")
 audio_player = NodePath("../AudioStreamPlayer3D")
 
 [node name="Suelo" type="MeshInstance3D" parent="." unique_id=824618534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.911688, -379.24612, 0)
 mesh = SubResource("BoxMesh_nrgdn")
 
 [node name="Channel" parent="." unique_id=769698616 instance=ExtResource("1_icdkg")]

@@ -6,15 +6,20 @@ enum QUBIT_STATE { ZERO = 0, ONE = 1, PLUS = 2, MINUS = 3 }
 enum OPERATOR { Z = 0, X = 1, H = 2 }
 
 @export var state = QUBIT_STATE.ZERO
+var timeToLife: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_color()
 	set_label()
+	timeToLife = 4.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	position.z = position.z -0.2
+	timeToLife -= delta
+	if timeToLife < 0:
+		queue_free()
 	pass
 
 #func _input(event):
