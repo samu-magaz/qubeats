@@ -25,6 +25,14 @@ var next_note_index := 0
 
 var rng = RandomNumberGenerator.new()
 
+var wave_scene = load("res://Scenes/Wave.tscn")
+var waves_left = []
+var waves_right = []
+
+var spectrum_instance
+const NUM_WAVES = 8  # Number of frequency bands to display
+const MAX_FREQ = 1000  # Frequency range to analyze
+
 func _ready() -> void:
 	if song_selection == SONG.SYNTHWAVE:
 		song_name = "the_mountain-synthwave"
@@ -35,9 +43,26 @@ func _ready() -> void:
 	audio_player.stream = load("res://Assets/Songs/" + song_name + ".wav")
 	
 	rng.seed = hash(song_name)
+	
+	for wave_list in [waves_left, waves_right]:
+		for i in range(NUM_WAVES):
+			var wave_instance: Node3D = wave_scene.instantiate()
+			wave_instance.rotate_y(PI/2)
+			wave_instance.rotate_x(PI/2)
+			wave_instance.position.y += 3
+			wave_instance.position.x += 15
+			wave_instance.is_sin = (i % 2 == 0)
+			wave_instance.is_neg = (i % 4 == 0 or i % 3 == 0)
+			add_child(wave_instance)
+			wave_list.append(wave_instance)
+			
+	for wave in waves_right:
+		wave.position.x -= 17
 
 	await get_tree().process_frame
 	audio_player.play()
+
+	spectrum_instance = AudioServer.get_bus_effect_instance(1, 0)  # Bus 1, Effect 0
 
 #Ahora mismo crea un qubit random cada segundo. CAMBIAR
 func _process(delta: float) -> void:
@@ -62,6 +87,28 @@ func _process(delta: float) -> void:
 	#if timer >= 1:
 		#timer = 0.0
 		#_RandomQubitGenerator(qubit, randi_range(0, 2) + 1)
+		
+	if not spectrum_instance:
+		return
+	var max_freq_amp = MAX_FREQ
+	
+	#for wave in waves_left:
+		#if wave.amplitude > max_freq_amp:
+			#max_freq_amp = wave.amplitude
+	
+	for i in range(len(waves_left)):
+		var freq_start = (i * MAX_FREQ) / NUM_WAVES
+		var freq_end = ((i + 1) * MAX_FREQ) / NUM_WAVES
+		var magnitude = spectrum_instance.get_magnitude_for_frequency_range(freq_start, freq_end).length()
+		
+		var intensity = (magnitude*1000) / (max_freq_amp * 1000.0) if max_freq_amp > 0 else 0.0
+		intensity *= 1000
+		intensity = clamp(intensity, 0.0, 1.0)  # Keep within valid range
+		
+		var wave = waves_left[i]
+		wave.amplitude = intensity * 70 * (i % 5)
+		wave = waves_right[i]
+		wave.amplitude = intensity * 70 * (i % 5)
 	
 func _input(event):
 	#Seleccionar y soltar los 3 trigger

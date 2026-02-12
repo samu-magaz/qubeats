@@ -30,6 +30,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 triggerList = [NodePath("../Channel/Road1/TriggerLeft/Node3D"), NodePath("../Channel/Road1/TriggerCenter/Node3D"), NodePath("../Channel/Road1/TriggerRight/Node3D")]
 mainScene = NodePath("..")
 audio_player = NodePath("../AudioStreamPlayer3D")
+song_selection = 1
 
 [node name="Suelo" type="MeshInstance3D" parent="." unique_id=824618534]
 mesh = SubResource("BoxMesh_nrgdn")
@@ -60,6 +61,7 @@ light_indirect_energy = 4.03
 offset_right = 97.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1022222977]
+bus = &"Visualizer"
 
 [editable path="Channel"]
 [editable path="Channel/Road1/TriggerRight"]
