@@ -11,7 +11,7 @@ func _ready() -> void:
 	get_node("MeshInstance3D").material_override = mat
 	originalPosition = global_position.y
 	#esto tiene que ser mejorable, basicamente accede a la scena padre
-	master = get_parent().get_parent().get_parent().get_parent().get_node("Mastermind")
+	master = get_tree().current_scene.get_node("Mastermind")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
