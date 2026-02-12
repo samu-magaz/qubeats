@@ -5,11 +5,13 @@ var state: int = 0
 @export var mat: Material
 var originalPosition
 var trigger_op
+var master: mastermind
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_node("MeshInstance3D").material_override = mat
 	originalPosition = global_position.y
-	pass # Replace with function body.
+	#esto tiene que ser mejorable, basicamente accede a la scena padre
+	master = get_parent().get_parent().get_parent().get_parent().get_node("Mastermind")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -52,11 +54,9 @@ func _on_area_3d_body_entered(body: Node3D) -> void: #este código hay que limpi
 			collision.apply_operator(Qubit.OPERATOR.H)
 		if collision.state == Qubit.QUBIT_STATE.ZERO:
 			lerp(collision.scale, collision.scale * 1.2, 1)
-			start_scoring_loop()
+			master.start_scoring_loop()
 			body.get_parent().queue_free()
 		else:
 			lerp(collision.scale, collision.scale * 0.8, 1)
 			#body.get_parent().queue_free()
 			
-func start_scoring_loop() -> void:
-		emit_signal("point_scored")

@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://b6wct3ikvcrx4"]
+
+[ext_resource type="PackedScene" uid="uid://vwi3efen54e2" path="res://Scenes/Mastermind.tscn" id="1_hfkdh"]
+[ext_resource type="PackedScene" uid="uid://drnvgxp2gn628" path="res://Scenes/Channel.tscn" id="1_icdkg"]
+[ext_resource type="Material" uid="uid://clglddvkdupky" path="res://Material/Amarillo.tres" id="4_oa3l7"]
+[ext_resource type="Material" uid="uid://c4iho04kfkodd" path="res://Material/Verde.tres" id="5_k332x"]
+[ext_resource type="PackedScene" uid="uid://b6c2mr7sg3ouv" path="res://Scenes/Scoreboard.tscn" id="6_k332x"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nrgdn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_icdkg"]
+
+[sub_resource type="Sky" id="Sky_icdkg"]
+sky_material = SubResource("ProceduralSkyMaterial_icdkg")
+
+[sub_resource type="Environment" id="Environment_f1fg8"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_icdkg")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_hfkdh"]
+
+[sub_resource type="Compositor" id="Compositor_olbvu"]
+
+[node name="Fase" type="Node3D" unique_id=2121837702]
+
+[node name="Mastermind" parent="." unique_id=618614357 node_paths=PackedStringArray("triggerList", "mainScene", "audio_player") instance=ExtResource("1_hfkdh")]
+triggerList = [NodePath("../Channel/Road1/TriggerLeft/Node3D"), NodePath("../Channel/Road1/TriggerCenter/Node3D"), NodePath("../Channel/Road1/TriggerRight/Node3D")]
+mainScene = NodePath("..")
+audio_player = NodePath("../AudioStreamPlayer3D")
+song_selection = 1
+
+[node name="Suelo" type="MeshInstance3D" parent="." unique_id=824618534]
+mesh = SubResource("BoxMesh_nrgdn")
+
+[node name="Channel" parent="." unique_id=769698616 instance=ExtResource("1_icdkg")]
+
+[node name="Node3D" parent="Channel/Road1/TriggerLeft" parent_id_path=PackedInt32Array(769698616, 1981431746) index="0" unique_id=1384333076]
+mat = ExtResource("4_oa3l7")
+
+[node name="Node3D" parent="Channel/Road1/TriggerCenter" parent_id_path=PackedInt32Array(769698616, 1547428074) index="0" unique_id=1384333076]
+mat = ExtResource("5_k332x")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=667715512]
+transform = Transform3D(-1, -1.8176218e-08, 8.551238e-08, 0, 0.9781476, 0.2079117, -8.742278e-08, 0.2079117, -0.9781476, 6, 7, -33.70195)
+environment = SubResource("Environment_f1fg8")
+attributes = SubResource("CameraAttributesPhysical_hfkdh")
+compositor = SubResource("Compositor_olbvu")
+current = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1434395866]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0157948, 9.144913, -2.5025418)
+light_energy = 3.689
+light_indirect_energy = 4.03
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1098845022]
+
+[node name="Scoreboard" parent="CanvasLayer" unique_id=1760385072 instance=ExtResource("6_k332x")]
+offset_right = 97.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1022222977]
+bus = &"Visualizer"
+
+[editable path="Channel"]
+[editable path="Channel/Road1/TriggerRight"]
+[editable path="Channel/Road1/TriggerLeft"]
+[editable path="Channel/Road1/TriggerCenter"]
