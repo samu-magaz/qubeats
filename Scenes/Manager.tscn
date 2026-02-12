@@ -31,6 +31,7 @@ audio_player = NodePath("AudioStreamPlayer3D")
 left_path = NodePath("LeftPath3D")
 center_path = NodePath("CenterPath3D")
 right_path = NodePath("RightPath3D")
+song = 1
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=695774947]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.162807)

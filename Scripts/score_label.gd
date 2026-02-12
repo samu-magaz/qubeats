@@ -9,5 +9,5 @@ func _ready():
 	
 
 func _on_point_scored() -> void:
-	score += 1
+	score += 100
 	label.text = "Score: %d" % score

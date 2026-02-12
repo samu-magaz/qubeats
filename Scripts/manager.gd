@@ -35,10 +35,10 @@ func _ready() -> void:
 		2: right_path
 	}
 	
-	load_chart("res://Assets/Beatmaps/the_mountain-synthwave.json")
-	audio_player.stream = load("res://Assets/Songs/the_mountain-synthwave.wav")
+	load_chart("res://Assets/Beatmaps/delosound-retro.json")
+	audio_player.stream = load("res://Assets/Songs/delosound-retro.wav")
 	
-	rng.seed = hash("the_mountain-synthwave")
+	rng.seed = hash("delosound-retro")
 
 	await get_tree().process_frame
 	audio_player.play()
