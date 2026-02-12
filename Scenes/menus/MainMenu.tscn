@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b0y6dd86ab8qt" path="res://Scripts/main_menu.gd" id="1_ghjcc"]
 [ext_resource type="Texture2D" uid="uid://bp8pvm5sk48vq" path="res://Assets/BG.png" id="1_nbr2c"]
 [ext_resource type="PackedScene" uid="uid://cmjik23a8dxbc" path="res://Scenes/menus/settings menu/settings_menu.tscn" id="3_ulmac"]
+[ext_resource type="AudioStream" uid="uid://bsbkohf051mr5" path="res://Assets/Songs/cyberwave-orchestra-suspense-sci-fi-underscore-music-loop-300215.mp3" id="4_2hrmo"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ghjcc"]
 texture = ExtResource("1_nbr2c")
@@ -133,6 +134,12 @@ offset_left = -216.5
 offset_top = -177.0
 offset_right = 216.5
 offset_bottom = 177.0
+
+[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1884118102]
+stream = ExtResource("4_2hrmo")
+volume_db = -14.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
