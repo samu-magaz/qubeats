@@ -2,8 +2,30 @@
 
 [ext_resource type="Script" uid="uid://b0y6dd86ab8qt" path="res://Scripts/main_menu.gd" id="1_ghjcc"]
 [ext_resource type="Texture2D" uid="uid://bp8pvm5sk48vq" path="res://Assets/BG.png" id="1_nbr2c"]
+[ext_resource type="Shader" uid="uid://vppng4nc65j2" path="res://Assets/Shaders/canvas_item.gdshader" id="2_5ldri"]
+[ext_resource type="Script" uid="uid://bb0xfgrpnd08s" path="res://Scenes/menus/color_rect.gd" id="3_ili33"]
 [ext_resource type="PackedScene" uid="uid://cmjik23a8dxbc" path="res://Scenes/menus/settings menu/settings_menu.tscn" id="3_ulmac"]
+[ext_resource type="FontFile" uid="uid://cjvjmmwk7p3vc" path="res://Assets/Fonts/pixel_chubby.TTF" id="3_urqsf"]
 [ext_resource type="AudioStream" uid="uid://bsbkohf051mr5" path="res://Assets/Songs/cyberwave-orchestra-suspense-sci-fi-underscore-music-loop-300215.mp3" id="4_2hrmo"]
+
+[sub_resource type="Gradient" id="Gradient_ili33"]
+colors = PackedColorArray(0.24313726, 0, 0.6117647, 1, 0.49411765, 0, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_oveju"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1cgek"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_oveju")
+color_ramp = SubResource("Gradient_ili33")
+seamless = true
+normalize = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ili33"]
+shader = ExtResource("2_5ldri")
+shader_parameter/noise_frequency = 10.000000471740119
+shader_parameter/noise_strength = 0.5590000265525
+shader_parameter/gradient_tex = SubResource("NoiseTexture2D_1cgek")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ghjcc"]
 texture = ExtResource("1_nbr2c")
@@ -43,7 +65,22 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_ghjcc")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=826828941]
+material = SubResource("ShaderMaterial_ili33")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+color = Color(0.41568628, 0, 1, 1)
+script = ExtResource("3_ili33")
+
 [node name="Panel" type="Panel" parent="." unique_id=2042956160]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.702
@@ -74,10 +111,12 @@ grow_vertical = 2
 [node name="Start" type="Button" parent="VBoxContainer" unique_id=1284285662]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.5019608, 0.627451, 1, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.3764706, 0, 1, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("3_urqsf")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_7axds")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7axds")
@@ -91,10 +130,11 @@ text = "START GAME"
 [node name="Settings" type="Button" parent="VBoxContainer" unique_id=1330319928]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.5019608, 0.627451, 1, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.3764706, 0, 1, 1)
+theme_override_fonts/font = ExtResource("3_urqsf")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_7axds")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7axds")
@@ -108,10 +148,11 @@ text = "SETTINGS"
 [node name="Exit" type="Button" parent="VBoxContainer" unique_id=1363365294]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.5019608, 0.627451, 1, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.3764706, 0, 1, 1)
+theme_override_fonts/font = ExtResource("3_urqsf")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_7axds")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7axds")
@@ -140,6 +181,21 @@ stream = ExtResource("4_2hrmo")
 volume_db = -14.0
 autoplay = true
 bus = &"Music"
+
+[node name="Title" type="Label" parent="." unique_id=58031709]
+layout_mode = 0
+offset_left = -284.0
+offset_top = -260.0
+offset_right = 559.0
+offset_bottom = -131.0
+theme_override_colors/font_color = Color(0.5019608, 0.627451, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_colors/font_outline_color = Color(0.3764706, 0, 1, 1)
+theme_override_constants/outline_size = 40
+theme_override_constants/shadow_outline_size = 60
+theme_override_fonts/font = ExtResource("3_urqsf")
+theme_override_font_sizes/font_size = 128
+text = "	QUBEATS"
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
