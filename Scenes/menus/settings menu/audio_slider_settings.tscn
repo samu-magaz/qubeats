@@ -10,6 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k623v")
+bus_name = "Master"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=880804842]
 layout_mode = 0
@@ -18,7 +19,7 @@ offset_bottom = 40.0
 theme_override_constants/separation = 42
 
 [node name="Audio_Name_Lbl" type="Label" parent="HBoxContainer" unique_id=1858578998]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "Master Volume"
@@ -27,7 +28,7 @@ text = "Master Volume"
 layout_mode = 2
 
 [node name="HSlider" type="HSlider" parent="HBoxContainer" unique_id=295719946]
-custom_minimum_size = Vector2(200, 32)
+custom_minimum_size = Vector2(150, 32)
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 1.0
