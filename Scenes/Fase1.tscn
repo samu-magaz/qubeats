@@ -5,24 +5,43 @@
 [ext_resource type="Material" uid="uid://clglddvkdupky" path="res://Material/Amarillo.tres" id="4_oa3l7"]
 [ext_resource type="Material" uid="uid://c4iho04kfkodd" path="res://Material/Verde.tres" id="5_k332x"]
 [ext_resource type="PackedScene" uid="uid://b6c2mr7sg3ouv" path="res://Scenes/Scoreboard.tscn" id="6_k332x"]
+[ext_resource type="Script" uid="uid://bnyjrqv23w64e" path="res://Scenes/world_environment.gd" id="6_y8ihj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nrgdn"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_icdkg"]
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_k332x"]
 
-[sub_resource type="Sky" id="Sky_icdkg"]
-sky_material = SubResource("ProceduralSkyMaterial_icdkg")
+[sub_resource type="Compositor" id="Compositor_olbvu"]
 
-[sub_resource type="Environment" id="Environment_f1fg8"]
+[sub_resource type="Gradient" id="Gradient_oa3l7"]
+colors = PackedColorArray(1, 1, 1, 1, 0.49411765, 0, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_k332x"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oa3l7"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_k332x")
+color_ramp = SubResource("Gradient_oa3l7")
+seamless = true
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_k332x"]
+panorama = SubResource("NoiseTexture2D_oa3l7")
+
+[sub_resource type="Sky" id="Sky_oa3l7"]
+sky_material = SubResource("PanoramaSkyMaterial_k332x")
+
+[sub_resource type="Environment" id="Environment_k332x"]
 background_mode = 2
 background_color = Color(1, 1, 1, 1)
-sky = SubResource("Sky_icdkg")
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_oa3l7")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 
-[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_hfkdh"]
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_oa3l7"]
 
-[sub_resource type="Compositor" id="Compositor_olbvu"]
+[sub_resource type="Compositor" id="Compositor_k332x"]
 
 [node name="Fase" type="Node3D" unique_id=2121837702]
 
@@ -36,6 +55,9 @@ mesh = SubResource("BoxMesh_nrgdn")
 
 [node name="Channel" parent="." unique_id=769698616 instance=ExtResource("1_icdkg")]
 
+[node name="Road" parent="Channel" index="0" unique_id=78500185]
+visible = false
+
 [node name="Node3D" parent="Channel/Road1/TriggerLeft" parent_id_path=PackedInt32Array(769698616, 1981431746) index="0" unique_id=1384333076]
 mat = ExtResource("4_oa3l7")
 
@@ -43,9 +65,8 @@ mat = ExtResource("4_oa3l7")
 mat = ExtResource("5_k332x")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=667715512]
-transform = Transform3D(-1, -1.8176218e-08, 8.551238e-08, 0, 0.9781476, 0.2079117, -8.742278e-08, 0.2079117, -0.9781476, 6, 7, -33.70195)
-environment = SubResource("Environment_f1fg8")
-attributes = SubResource("CameraAttributesPhysical_hfkdh")
+transform = Transform3D(-1, -1.8176218e-08, 8.551238e-08, 6.10287e-09, 0.9612472, 0.2756877, -8.720949e-08, 0.2756877, -0.9612472, 6, 7.460348, -33.70195)
+attributes = SubResource("CameraAttributesPhysical_k332x")
 compositor = SubResource("Compositor_olbvu")
 current = true
 
@@ -60,14 +81,21 @@ light_indirect_energy = 4.03
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -76.0
-offset_top = 40.0
-offset_right = 21.0
-offset_bottom = 80.0
+offset_left = -126.0
+offset_top = 20.0
+offset_right = -29.0
+offset_bottom = 60.0
 grow_horizontal = 2
+scale = Vector2(2, 2)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1022222977]
 bus = &"Visualizer"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=239156550]
+environment = SubResource("Environment_k332x")
+camera_attributes = SubResource("CameraAttributesPhysical_oa3l7")
+compositor = SubResource("Compositor_k332x")
+script = ExtResource("6_y8ihj")
 
 [editable path="Channel"]
 [editable path="Channel/Road1/TriggerRight"]

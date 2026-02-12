@@ -51,6 +51,7 @@ func _ready() -> void:
 			wave_instance.rotate_x(PI/2)
 			wave_instance.position.y += 3
 			wave_instance.position.x += 15
+			wave_instance.position.z += 20
 			wave_instance.is_sin = (i % 2 == 0)
 			wave_instance.is_neg = (i % 4 == 0 or i % 3 == 0)
 			add_child(wave_instance)
@@ -76,25 +77,13 @@ func _process(delta: float) -> void:
 		
 		if song_time >= spawn_time:
 			_RandomQubitGenerator(qubit, rng.randi_range(0, 2) + 1)
-			#add_qubit(paths.get(rng.randi_range(0, 2)))
-			#add_qubit(paths.get(int(note["lane"])))
-			#start_scoring_loop()#esto hay que moverlo a cuando se acierte el hit con el disparador
 			next_note_index += 1
 		else:
 			break
-			
-	#timer += delta
-	#if timer >= 1:
-		#timer = 0.0
-		#_RandomQubitGenerator(qubit, randi_range(0, 2) + 1)
 		
 	if not spectrum_instance:
 		return
 	var max_freq_amp = MAX_FREQ
-	
-	#for wave in waves_left:
-		#if wave.amplitude > max_freq_amp:
-			#max_freq_amp = wave.amplitude
 	
 	for i in range(len(waves_left)):
 		var freq_start = (i * MAX_FREQ) / NUM_WAVES
@@ -106,9 +95,11 @@ func _process(delta: float) -> void:
 		intensity = clamp(intensity, 0.0, 1.0)  # Keep within valid range
 		
 		var wave = waves_left[i]
-		wave.amplitude = intensity * 70 * (i % 5)
+		wave.amplitude = lerp(float(wave.amplitude), intensity * 70 * (i % 5), intensity*25)
+		wave.color = lerp(Vector4(0.50, 0.62, 1.00, 1.00), Vector4(0.37, 0.00, 1.00, 1.00), intensity*100)
 		wave = waves_right[i]
-		wave.amplitude = intensity * 70 * (i % 5)
+		wave.amplitude = lerp(float(wave.amplitude), intensity * 70 * (i % 5), intensity*25)
+		wave.color = lerp(Vector4(0.50, 0.62, 1.00, 1.00), Vector4(0.37, 0.00, 1.00, 1.00), intensity*100)
 	
 func _input(event):
 	#Seleccionar y soltar los 3 trigger
