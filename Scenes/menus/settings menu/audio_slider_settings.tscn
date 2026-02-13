@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://klihoc54j6mv"]
 
 [ext_resource type="Script" uid="uid://bhqkudvpk5oit" path="res://Scripts/audio_slider_settings.gd" id="1_k623v"]
+[ext_resource type="FontFile" uid="uid://cjvjmmwk7p3vc" path="res://Assets/Fonts/pixel_chubby.TTF" id="2_17yke"]
 
 [node name="Audio_Slider_Settings" type="Control" unique_id=1894218801]
 layout_mode = 3
@@ -13,22 +14,25 @@ script = ExtResource("1_k623v")
 bus_name = "Master"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=880804842]
-layout_mode = 0
-offset_right = 40.0
+layout_mode = 1
+anchors_preset = -1
+offset_right = 551.0
 offset_bottom = 40.0
 theme_override_constants/separation = 42
 
 [node name="Audio_Name_Lbl" type="Label" parent="HBoxContainer" unique_id=1858578998]
-custom_minimum_size = Vector2(120, 0)
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_17yke")
+theme_override_font_sizes/font_size = 12
 text = "Master Volume"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer" unique_id=207087200]
 layout_mode = 2
 
 [node name="HSlider" type="HSlider" parent="HBoxContainer" unique_id=295719946]
-custom_minimum_size = Vector2(150, 32)
+custom_minimum_size = Vector2(140, 32)
 layout_mode = 2
 size_flags_vertical = 1
 max_value = 1.0
@@ -38,6 +42,8 @@ step = 0.001
 layout_mode = 2
 
 [node name="Audio_Num_Lbl" type="Label" parent="HBoxContainer" unique_id=176861439]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_17yke")
+theme_override_font_sizes/font_size = 12
 text = "99.2"

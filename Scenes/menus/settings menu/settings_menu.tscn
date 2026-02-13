@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cmjik23a8dxbc"]
 
 [ext_resource type="Script" uid="uid://dmigqtx18tflq" path="res://Scripts/settings_menu.gd" id="1_ixoci"]
+[ext_resource type="FontFile" uid="uid://cjvjmmwk7p3vc" path="res://Assets/Fonts/pixel_chubby.TTF" id="2_0weeu"]
 [ext_resource type="PackedScene" uid="uid://d1hfpopiop7oa" path="res://Scenes/menus/settings menu/settings_tab_container.tscn" id="2_y0cl0"]
 
 [node name="Settings_Menu" type="Control" unique_id=767478672]
@@ -34,6 +35,7 @@ theme_override_constants/separation = -48
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=484881662]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0weeu")
 theme_override_font_sizes/font_size = 20
 text = "SETTINGS"
 horizontal_alignment = 1
@@ -45,4 +47,5 @@ layout_mode = 2
 [node name="Exit_Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1062843123]
 layout_mode = 2
 size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_0weeu")
 text = "Exit"
