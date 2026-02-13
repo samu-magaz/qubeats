@@ -34,13 +34,13 @@ func _process(delta: float) -> void:
 
 func set_color() -> void:
 	if state == QUBIT_STATE.ZERO:
-		$MeshInstance3D.material_override = preload("res://Material/Azul.tres")
+		$MeshInstance3D.material_override = preload("res://Material/InverseLightBlue.tres")
 	elif state == QUBIT_STATE.ONE:
-		$MeshInstance3D.material_override = preload("res://Material/Rosa.tres")
+		$MeshInstance3D.material_override = preload("res://Material/LightBlue.tres")
 	if state == QUBIT_STATE.PLUS:
-		$MeshInstance3D.material_override = preload("res://Material/Naranja.tres")
+		$MeshInstance3D.material_override = preload("res://Material/LightPink.tres")
 	elif state == QUBIT_STATE.MINUS:
-		$MeshInstance3D.material_override = preload("res://Material/Jungle.tres")
+		$MeshInstance3D.material_override = preload("res://Material/InverseLightPink.tres")
 		
 func set_label() -> void:
 	if state == QUBIT_STATE.ZERO:
