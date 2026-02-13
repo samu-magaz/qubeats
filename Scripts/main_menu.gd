@@ -22,6 +22,7 @@ func _on_settings_pressed() -> void:
 	vbox_container.visible = false
 	settings_menu.set_process(true)
 	settings_menu.visible = true
+	$Title.visible = false
 
 
 func _on_exit_pressed() -> void:
@@ -31,6 +32,7 @@ func _on_exit_pressed() -> void:
 func on_exit_settings_menu() -> void:
 	vbox_container.visible = true
 	settings_menu.visible = false
+	$Title.visible = true
 
 
 

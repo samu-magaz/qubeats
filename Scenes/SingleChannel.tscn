@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cf4sk22sr0s6s"]
+
+[ext_resource type="Script" uid="uid://bkglrne4atowx" path="res://Scripts/qubit_trigger.gd" id="1_86un1"]
+[ext_resource type="Script" uid="uid://bo0jtejtl42k4" path="res://Scripts/single_channel.gd" id="1_qrjou"]
+[ext_resource type="Material" uid="uid://ctph2pstiieul" path="res://Material/DarkBlue.tres" id="2_typpu"]
+[ext_resource type="Material" uid="uid://dkxotni30q8d5" path="res://Material/DarkPurple.tres" id="3_xj4ob"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qrjou"]
+size = Vector3(0.2, 0.2, 50)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xj4ob"]
+top_radius = 0.75
+bottom_radius = 0.75
+height = 0.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_typpu"]
+height = 1.0
+radius = 1.0
+
+[node name="SingleChannel" type="Node3D" unique_id=1339444463]
+script = ExtResource("1_qrjou")
+material_default = ExtResource("2_typpu")
+material_selected = ExtResource("3_xj4ob")
+
+[node name="Road" type="MeshInstance3D" parent="." unique_id=795636771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -25.5)
+mesh = SubResource("BoxMesh_qrjou")
+
+[node name="Trigger" type="Node3D" parent="." unique_id=1033427027]
+script = ExtResource("1_86un1")
+
+[node name="QubitTrigger" type="MeshInstance3D" parent="Trigger" unique_id=197549127]
+mesh = SubResource("CylinderMesh_xj4ob")
+
+[node name="Area3D" type="Area3D" parent="Trigger" unique_id=1973947331]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger/Area3D" unique_id=1136612144]
+shape = SubResource("CylinderShape3D_typpu")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[connection signal="body_entered" from="Trigger/Area3D" to="Trigger" method="_on_area_3d_body_entered"]

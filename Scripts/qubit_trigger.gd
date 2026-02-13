@@ -9,7 +9,7 @@ var master: mastermind
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_node("MeshInstance3D").material_override = mat
+	#get_node("MeshInstance3D").material_override = mat
 	originalPosition = global_position.y
 	#esto tiene que ser mejorable, basicamente accede a la scena padre
 	master = get_tree().current_scene.get_node("Mastermind")
@@ -21,9 +21,10 @@ func _process(delta: float) -> void:
 	pass
 	
 func _Selected()-> void:
-	global_position.y = originalPosition - 1
+	global_position.y = originalPosition - 0.25
 	state = 1
 	pass
+
 func _Deselected()-> void:
 	if state == 1:
 		global_position.y = originalPosition
@@ -32,12 +33,14 @@ func _Deselected()-> void:
 	
 func _Trigger(operator: String)-> void:
 	trigger_op = operator
-	global_position.y = originalPosition + 1
-	if get_node("Area3D").has_overlapping_bodies():
+	global_position.y = originalPosition + 0.25
+	if $Area3D.has_overlapping_bodies():
 		print("ParchePirata")
 	pass
+	
 func _Recover()-> void: #esta funcion es mejorable
-	global_position.y = originalPosition - 1
+	global_position.y = originalPosition - 0.25
+	trigger_op = ""
 	#if global_position.y != originalPosition:
 		#global_position.y = originalPosition
 	pass

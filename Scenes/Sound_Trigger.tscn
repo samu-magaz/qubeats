@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dd72aa0gjcoha"]
 
-[ext_resource type="Script" uid="uid://bkglrne4atowx" path="res://Scripts/QubitTrigger.gd" id="1_oqlft"]
+[ext_resource type="Script" uid="uid://bkglrne4atowx" path="res://Scripts/qubit_trigger.gd" id="1_oqlft"]
 [ext_resource type="Material" uid="uid://b2hxfnn0ubyos" path="res://Material/Azul.tres" id="2_1ca2s"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_x3mjc"]

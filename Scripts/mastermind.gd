@@ -4,7 +4,7 @@ extends Node
 signal point_scored
 
 # Called when the node enters the scene tree for the first time.
-@export var triggerList: Array[QubitTrigger]
+var trigger_list: Array[SingleChannel]
 var qubit = load("res://Scenes/Qubit.tscn")
 @export var mainScene: Node
 var timer = 0.0
@@ -34,6 +34,12 @@ const NUM_WAVES = 8  # Number of frequency bands to display
 const MAX_FREQ = 1000  # Frequency range to analyze
 
 func _ready() -> void:
+	trigger_list = [
+		$ChannelLeft,
+		$ChannelCenter,
+		$ChannelRight
+	]
+	
 	if song_selection == SONG.SYNTHWAVE:
 		song_name = "the_mountain-synthwave"
 	elif song_selection == SONG.RETRO:
@@ -49,8 +55,8 @@ func _ready() -> void:
 			var wave_instance: Node3D = wave_scene.instantiate()
 			wave_instance.rotate_y(PI/2)
 			wave_instance.rotate_x(PI/2)
-			wave_instance.position.y += 3
-			wave_instance.position.x += 15
+			wave_instance.position.y += 2
+			wave_instance.position.x += 10
 			wave_instance.position.z += 20
 			wave_instance.is_sin = (i % 2 == 0)
 			wave_instance.is_neg = (i % 4 == 0 or i % 3 == 0)
@@ -58,7 +64,7 @@ func _ready() -> void:
 			wave_list.append(wave_instance)
 			
 	for wave in waves_right:
-		wave.position.x -= 17
+		wave.position.x -= 20
 
 	await get_tree().process_frame
 	audio_player.play()
@@ -76,7 +82,7 @@ func _process(delta: float) -> void:
 		var spawn_time = note["time"] - 1.5
 		
 		if song_time >= spawn_time:
-			_RandomQubitGenerator(qubit, rng.randi_range(0, 2) + 1)
+			_RandomQubitGenerator(qubit, rng.randi_range(-1, 1))
 			next_note_index += 1
 		else:
 			break
@@ -104,25 +110,25 @@ func _process(delta: float) -> void:
 func _input(event):
 	#Seleccionar y soltar los 3 trigger
 	if event.is_action_pressed("Select_Left"):
-		triggerList[0]._Selected()
+		trigger_list[0]._Selected()
 	if event.is_action_released("Select_Left"):
-		triggerList[0]._Deselected()
+		trigger_list[0]._Deselected()
 	if event.is_action_pressed("Select_Center"):
-		triggerList[1]._Selected()
+		trigger_list[1]._Selected()
 	if event.is_action_released("Select_Center"):
-		triggerList[1]._Deselected()
+		trigger_list[1]._Deselected()
 	if event.is_action_pressed("Select_Right"):
-		triggerList[2]._Selected()
+		trigger_list[2]._Selected()
 	if event.is_action_released("Select_Right"):
-		triggerList[2]._Deselected()
+		trigger_list[2]._Deselected()
 	#Disparar los triggers
 	if event.is_action_pressed("OperadorX") or event.is_action_pressed("OperadorH"):#Asignado a tecla random en un futuro serán las operaciones
-		for trigger in triggerList:
-			if trigger.state == 1:
+		for trigger in trigger_list:
+			if trigger.get_child(1).state == 1:
 				trigger._Trigger(event.as_text())
 	if event.is_action_released("OperadorX") or event.is_action_released("OperadorH"):#Asignado a tecla random en un futuro serán las operaciones
-		for trigger in triggerList:
-			if trigger.state == 1:
+		for trigger in trigger_list:
+			if trigger.get_child(1).state == 1:
 				trigger._Recover() #ESTO ES UN PUTO DRAMA
 
 
@@ -146,7 +152,7 @@ func _RandomQubitGenerator(qubit, channel):
 	newInstance.set_state(rng.randi() % 2 + 1)
 	newInstance.rotate_y(PI)
 	mainScene.add_child(newInstance)
-	newInstance.position = Vector3(channel * 3, 4.5, -1)
+	newInstance.position = Vector3(channel * 5, 1, -1)
 
 func start_scoring_loop() -> void:
 		emit_signal("point_scored")

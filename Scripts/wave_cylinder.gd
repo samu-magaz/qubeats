@@ -1,6 +1,6 @@
 extends Node
 
-@export var amplitude = 1
+@export var amplitude = 0
 @export var is_sin = true
 @export var is_neg = true
 @export var color = Color.BLUE_VIOLET

@@ -1,13 +1,9 @@
 [gd_scene format=3 uid="uid://b6wct3ikvcrx4"]
 
 [ext_resource type="PackedScene" uid="uid://vwi3efen54e2" path="res://Scenes/Mastermind.tscn" id="1_hfkdh"]
-[ext_resource type="PackedScene" uid="uid://drnvgxp2gn628" path="res://Scenes/Channel.tscn" id="1_icdkg"]
-[ext_resource type="Material" uid="uid://clglddvkdupky" path="res://Material/Amarillo.tres" id="4_oa3l7"]
-[ext_resource type="Material" uid="uid://c4iho04kfkodd" path="res://Material/Verde.tres" id="5_k332x"]
+[ext_resource type="PackedScene" uid="uid://cf4sk22sr0s6s" path="res://Scenes/SingleChannel.tscn" id="4_olbvu"]
 [ext_resource type="PackedScene" uid="uid://b6c2mr7sg3ouv" path="res://Scenes/Scoreboard.tscn" id="6_k332x"]
 [ext_resource type="Script" uid="uid://bnyjrqv23w64e" path="res://Scenes/world_environment.gd" id="6_y8ihj"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_nrgdn"]
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_k332x"]
 
@@ -45,36 +41,30 @@ ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="Fase" type="Node3D" unique_id=2121837702]
 
-[node name="Mastermind" parent="." unique_id=618614357 node_paths=PackedStringArray("triggerList", "mainScene", "audio_player") instance=ExtResource("1_hfkdh")]
-triggerList = [NodePath("../Channel/Road1/TriggerLeft/Node3D"), NodePath("../Channel/Road1/TriggerCenter/Node3D"), NodePath("../Channel/Road1/TriggerRight/Node3D")]
+[node name="Mastermind" parent="." unique_id=618614357 node_paths=PackedStringArray("mainScene", "audio_player") instance=ExtResource("1_hfkdh")]
 mainScene = NodePath("..")
 audio_player = NodePath("../AudioStreamPlayer3D")
 
-[node name="Suelo" type="MeshInstance3D" parent="." unique_id=824618534]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.911688, -379.24612, 0)
-mesh = SubResource("BoxMesh_nrgdn")
+[node name="ChannelLeft" parent="Mastermind" unique_id=1300063303 instance=ExtResource("4_olbvu")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5, 0, -20)
 
-[node name="Channel" parent="." unique_id=769698616 instance=ExtResource("1_icdkg")]
+[node name="ChannelCenter" parent="Mastermind" unique_id=1339444463 instance=ExtResource("4_olbvu")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -20)
 
-[node name="Road" parent="Channel" index="0" unique_id=78500185]
-visible = false
-
-[node name="Node3D" parent="Channel/Road1/TriggerLeft" parent_id_path=PackedInt32Array(769698616, 1981431746) index="0" unique_id=1384333076]
-mat = ExtResource("4_oa3l7")
-
-[node name="Node3D" parent="Channel/Road1/TriggerCenter" parent_id_path=PackedInt32Array(769698616, 1547428074) index="0" unique_id=1384333076]
-mat = ExtResource("5_k332x")
+[node name="ChannelRight" parent="Mastermind" unique_id=1737202036 instance=ExtResource("4_olbvu")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 0, -20)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=667715512]
-transform = Transform3D(-1, -1.8176218e-08, 8.551238e-08, 6.10287e-09, 0.9612472, 0.2756877, -8.720949e-08, 0.2756877, -0.9612472, 6, 7.460348, -33.70195)
+transform = Transform3D(-1, 2.2626677e-08, -8.444391e-08, 0, 0.96592575, 0.258819, 8.742278e-08, 0.258819, -0.96592575, 0, 7, -33)
 attributes = SubResource("CameraAttributesPhysical_k332x")
 compositor = SubResource("Compositor_olbvu")
 current = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1434395866]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0157948, 9.144913, -2.5025418)
-light_energy = 3.689
-light_indirect_energy = 4.03
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.3270407, -22.237295)
+light_energy = 10.0
+light_indirect_energy = 5.0
+omni_range = 39.92606
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1098845022]
 
@@ -97,8 +87,3 @@ environment = SubResource("Environment_k332x")
 camera_attributes = SubResource("CameraAttributesPhysical_oa3l7")
 compositor = SubResource("Compositor_k332x")
 script = ExtResource("6_y8ihj")
-
-[editable path="Channel"]
-[editable path="Channel/Road1/TriggerRight"]
-[editable path="Channel/Road1/TriggerLeft"]
-[editable path="Channel/Road1/TriggerCenter"]

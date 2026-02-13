@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 	#noise.offset.x += cos(delta * speed) * speed
 	#noise.offset.y += sin(delta * speed) * speed
 	#noise.offset.z += sin(delta * speed) * speed
-	self.environment.sky.sky_material.panorama.height = 256 * (sin(cum * speed) + 1)/2
-	self.environment.sky.sky_material.panorama.width = 256 * (cos(cum * speed) + 1)/2
+	self.environment.sky.sky_material.panorama.height = 256 * (sin(cum * speed) + 1)/2 + 1
+	self.environment.sky.sky_material.panorama.width = 256 * (cos(cum * speed) + 1)/2 + 1
 	self.environment.sky.sky_material.emit_changed()
 	

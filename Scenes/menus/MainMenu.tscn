@@ -23,7 +23,7 @@ normalize = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ili33"]
 shader = ExtResource("2_5ldri")
-shader_parameter/noise_frequency = 10.000000471740119
+shader_parameter/noise_frequency = 10.00000047174012
 shader_parameter/noise_strength = 0.5590000265525
 shader_parameter/gradient_tex = SubResource("NoiseTexture2D_1cgek")
 
